@@ -1,0 +1,28 @@
+
+
+Done:
+	score:
+		aces
+		twos
+		threes
+		fours
+		fives
+		sixes
+		3 of a kind
+		4 of a kind
+		yahtzee
+		full house
+			
+
+
+ToDo:
+	score:
+		
+		sm. straight
+		lg. straight
+			doing this, need to fix so that 1,2,3,5,6 does NOT 
+			count as alarge strait
+		chanse
+		yahtzee bonus
+		totals
+
