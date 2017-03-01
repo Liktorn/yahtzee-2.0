@@ -11,22 +11,27 @@ void main()
 	srand((unsigned)time(NULL));
 	Board board;
 
-//	board.makeARoll();
-
-	board.dice[0] = 1;
-	board.dice[1] = 2;
-	board.dice[2] = 3;
-	board.dice[3] = 6;
-	board.dice[4] = 5;
-
-
-//	board.printDice();
-	board.sortDice(board.dice);
-
-//	cout << board.testScoreCondition(9) << endl;
+////	board.makeARoll();
+//
+//	board.dice[0] = 2;
+//	board.dice[1] = 2;
+//	board.dice[2] = 3;
+//	board.dice[3] = 4;
+//	board.dice[4] = 5;
+//
+//
+////	board.printDice();
+//	board.sortDice(board.dice);
+//
+//	cout << board.testScoreCondition(13) << endl;
 //	cout << board.tempScore <<endl;
+//
+////	cout << board.checkStraight(5) << endl;
+//	board.printDice();
 
-	cout << board.checkStraight(4) << endl;
-	board.printDice();
+
+	board.printBoard();
+
+
 	
 }

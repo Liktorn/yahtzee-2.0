@@ -41,6 +41,10 @@ void Board::makeARoll(int *reRollDice)
 // Print the board on the screen
 void Board::printBoard()
 {
+	cout << "här skall spelbrädet visas" << endl;
+
+
+
 
 }
 /******************************************************************/
@@ -142,10 +146,20 @@ bool Board::testScoreCondition(int scoreChoice)		//maybe take a value?
 		}
 		else
 			return false;
-
 	}
 	// test if Lg. Straight		11
-
+	else if (scoreChoice == 11)
+	{
+		sortDice(Board::dice);
+		//send to method for validation.
+		if (checkStraight(5))
+		{
+			tempScore = 40;
+			return true;
+		}
+		else
+			return false;
+	}
 	//test if YAHTZEE (5of a kind) 12
 	else if (scoreChoice == 12)
 	{
@@ -160,9 +174,13 @@ bool Board::testScoreCondition(int scoreChoice)		//maybe take a value?
 			return false;
 	}
 	// chance					13
-
+	else if (scoreChoice == 13)
+	{
+		for (int i = 0; i < DICE; i++)
+			tempScore += dice[i];
+		return true;
+	}
 	// test if yahtzee bonus		14
-
 
 	return true;
 }
@@ -188,16 +206,57 @@ void Board::sortDice(int *pDice)
 // check if straight, either 4 or 5 in a row
 bool Board::checkStraight(int seq)
 {
-	int noInRow = 0;
-	for (int i = 0; i < DICE-1; i++)
+	//this is the only rows that are a small straight
+	int smStraigt[3][4]{ { 1,2,3,4 }, { 2,3,4,5}, { 3,4,5,6 } };
+	// this is the only large straight
+	int lgStraight[]{ 1,2,3,4,5 };
+	int counter = 0;
+	// small straight
+	if (seq == 4)
 	{
-		if ((dice[i] + 1) == dice[i + 1])
-			noInRow++;
+		for (int i = 0; i < 3; i++)//row
+		{
+			for (int a = 0; a < 2; a++)		
+			{
+
+				for (int j = 0; j < 4; j++)//collomn
+				{	
+					int straight = smStraigt[i][j];
+					int d = dice[j + a];
+					// check if a row, dice by dice are the same
+					if(smStraigt[i][j] == dice[j+a])
+					{
+						counter++;
+						if (counter == 4)
+							return true;
+					}
+					else
+					{
+						counter = 0;
+					}
+				}
+				
+			}
+			
+		}
+		if (counter == 4)
+			return true;
+		else
+		 return false;
 	}
-	if (noInRow == seq-1)
+	//large straight
+	else if (seq == 5)
+	{
+		for (int i = 0; i < DICE; i++)		//row
+		{
+			if (dice[i] == lgStraight[i])
+				counter++;
+			else
+				return false;
+		}
 		return true;
-	else
-		return false;
+	}
+	
 
 }
 /******************************************************************/
